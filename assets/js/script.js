@@ -1,5 +1,5 @@
 let startButton = document.getElementById("start-button");
-let questions = document.getElementById("question");
+let questionEle = document.getElementById("question");
 
 let questions = [
   {
@@ -10,3 +10,16 @@ let questions = [
     ]
   }
 ]
+
+let currentQuestion;
+let remainingTime;
+let score;
+
+startButton.addEventListener("click", startGame);
+function startGame() {
+  currentQuestion = 0;
+  remainingTime = 30;
+  score = 0;
+  // hiding start button
+  startButton.classList.add("hidden");
+}
