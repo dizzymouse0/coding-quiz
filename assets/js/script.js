@@ -1,7 +1,9 @@
+// variables for html 
 let startButton = document.getElementById("start-button");
 let questionEle = document.getElementById("question");
 let timerElement = document.getElementById("timer")
 
+// game questions
 let questions = [
   {
     question: "Are Java and Javascript the same thing?",
@@ -12,6 +14,7 @@ let questions = [
   }
 ]
 
+// variables for the function
 let currentQuestion;
 let remainingTime;
 let score;
@@ -27,7 +30,12 @@ function startGame() {
   timerInterval = setInterval(function() {
     timeLeft--;
     timerElement.textContent = timeLeft;
-
-    
-  }, 1000)
+//starting the timer
+    if (remainingTime <= 0 || currentQuestion === questions.length) {
+      clearInterval(timerInterval);
+      endGame();
+    }
+  }, 1000);
+  
+  displayQuestion();
 }
