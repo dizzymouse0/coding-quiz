@@ -1,1 +1,1 @@
-let startButton = document.getElementById("start-button")
+let startButton = document.getElementById("start-button");
