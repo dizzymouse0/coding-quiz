@@ -1,5 +1,6 @@
 let startButton = document.getElementById("start-button");
 let questionEle = document.getElementById("question");
+let timerElement = document.getElementById("timer")
 
 let questions = [
   {
@@ -22,4 +23,11 @@ function startGame() {
   score = 0;
   // hiding start button
   startButton.classList.add("hidden");
+
+  timerInterval = setInterval(function() {
+    timeLeft--;
+    timerElement.textContent = timeLeft;
+
+    
+  }, 1000)
 }
