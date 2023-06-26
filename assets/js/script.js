@@ -39,3 +39,17 @@ function startGame() {
   
   displayQuestion();
 }
+// displaying next questions
+function displayQuestion() {
+  let question = questions[currentQuestion];
+  questionEle.textContent = question.question;
+//show answer buttons
+  question.answers.forEach(function(answer) {
+    let button = document.createElement("button");
+    button.textContent = answer.text;
+    button.classList.add("btn");
+    if(answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+  })
+}
