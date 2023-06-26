@@ -1,9 +1,10 @@
-.quizTitle {
-    justify-content: center;
+body {
+    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(223, 201, 243, 0.918);
 }
 
-.startButton {
+#start-button {
     /* changed cursor appearance to signify when hovering over a button */
     cursor: pointer;
     font-size: 24px;

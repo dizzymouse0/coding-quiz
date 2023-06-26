@@ -1,6 +1,6 @@
 // variables for html 
 let startButton = document.getElementById("start-button");
-let questionEle = document.getElementById("question");
+let questionElement = document.getElementById("question");
 let timerElement = document.getElementById("timer")
 let answerButtonsElement = document.getElementById("answer-buttons");
 let scoreElement = document.getElementById("score")
@@ -42,7 +42,7 @@ function startGame() {
   timerElement.textContent = timeLeft;
   // hiding start button
   startButton.classList.add("hidden");
-  questionEle.classList.remove("hidden");
+  questionElement.classList.remove("hidden");
   answerButtonsElement.classList.remove("hidden");
 
   timerInterval = setInterval(function() {
@@ -60,7 +60,12 @@ function startGame() {
 // displaying next questions
 function displayQuestion() {
   let question = questions[currentQuestion];
-  questionEle.textContent = question.question;
+  questionElement.textContent = question.question;
+
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+
 //show answer buttons
   question.answers.forEach(function(answer) {
     let button = document.createElement("button");
@@ -69,6 +74,8 @@ function displayQuestion() {
     if(answer.correct) {
       button.dataset.correct = answer.correct;
     }
+    button.addEventListener("click", selectAnswer);
+    answerButtonsElement.appendChild(button);
   });
 }
 
@@ -97,7 +104,7 @@ function selectAnswer(selectAnswer) {
 }
 //hide questions
 function endGame() {
-  questionEle.classList.add("hide");
+  questionElement.classList.add("hide");
   answerButtonsElement.classList.add("hide");
 //showing user score
   scoreElement.textContent = "Score: " + score;
