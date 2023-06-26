@@ -34,6 +34,9 @@ let questions = [
       { text: "function", correct: false},
     ]
   }
+  //{
+   // question: "b! = c"
+  //}
 ]
 
 // variables for the function
@@ -50,9 +53,9 @@ function startGame() {
   score = 0;
   timerElement.textContent = timeLeft;
   // hiding start button
-  startButton.classList.add("hidden");
-  questionElement.classList.remove("hidden");
-  answerButtonsElement.classList.remove("hidden");
+  startButton.classList.add("hide");
+  questionElement.classList.remove("hide");
+  answerButtonsElement.classList.remove("hide");
 
   timerInterval = setInterval(function() {
     timeLeft--;
