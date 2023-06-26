@@ -24,6 +24,15 @@ let questions = [
       { text: "9", correct: false},
       { text: "7", correct: true},
     ]
+  },
+  {
+    question: "What is NOT a reference type?",
+    answers: [
+      { text: "object", correct: false},
+      { text: "array", correct: false},
+      { text: "while", correct: true},
+      { text: "function", correct: false},
+    ]
   }
 ]
 
@@ -79,6 +88,7 @@ function displayQuestion() {
   });
 }
 
+// adding correct or wrong functions
 function selectAnswer(selectAnswer) {
   let selectedButton = selectAnswer.target;
   let correct = selectedButton.dataset.correct;
