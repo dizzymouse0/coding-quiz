@@ -2,8 +2,10 @@
 let startButton = document.getElementById("start-button");
 let questionEle = document.getElementById("question");
 let timerElement = document.getElementById("timer")
-let answerButtonsElement = document.getElementById("answerButtons");
+let answerButtonsElement = document.getElementById("answer-buttons");
 let scoreElement = document.getElementById("score")
+let saveButton = document.getElementById("save-button");
+let highScores = document.getElementById("high-scores")
 
 // game questions
 let questions = [
@@ -13,32 +15,41 @@ let questions = [
       { text: "Yes", correct: false },
       { text: "No", correct: true },
     ]
+  },
+  {
+    question: "How many primitive data types are there?",
+    answers: [
+      { text: "8", correct: false},
+      { text: "4", correct: false},
+      { text: "9", correct: false},
+      { text: "7", correct: true},
+    ]
   }
 ]
 
 // variables for the function
 let currentQuestion;
-let remainingTime;
 let score;
+let timeLeft;
 let timerInterval;
 
 startButton.addEventListener("click", startGame);
 
 function startGame() {
   currentQuestion = 0;
-  remainingTime = 30;
+  timeLeft = 30;
   score = 0;
-  //timerElement.textContent = timeLeft;
+  timerElement.textContent = timeLeft;
   // hiding start button
   startButton.classList.add("hidden");
-  questionEle.classList.remove("hide");
-  answerButtonsElement.classList.remove("hide");
+  questionEle.classList.remove("hidden");
+  answerButtonsElement.classList.remove("hidden");
 
   timerInterval = setInterval(function() {
     timeLeft--;
     timerElement.textContent = timeLeft;
 //starting the timer
-    if (remainingTime <= 0 || currentQuestion === questions.length) {
+    if (timeLeft <= 0 || currentQuestion === questions.length) {
       clearInterval(timerInterval);
       endGame();
     }
