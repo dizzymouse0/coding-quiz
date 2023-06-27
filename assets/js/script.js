@@ -6,7 +6,7 @@ var answerButtonsElement = document.getElementById("answer-buttons");
 var scoreElement = document.getElementById("score")
 var saveButton = document.getElementById("save-button");
 var highScoresList = document.getElementById("high-scores")
-var nameEntry = document.getElementById("name-entry");
+var nameElement = document.getElementById("name-entry");
 
 // game questions
 var questions = [
@@ -45,8 +45,11 @@ var currentQuestion;
 var score;
 var timeLeft;
 var timerInterval;
+var highScores = [];
 
 startButton.addEventListener("click", startGame);
+
+saveButton.addEventListener("click", saveScore);
 
 function startGame() {
   currentQuestion = 0;
@@ -84,7 +87,7 @@ function displayQuestion() {
     var button = document.createElement("button");
     button.textContent = answer.text;
     button.classList.add("btn");
-    if(answer.correct) {
+    if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", selectAnswer);
@@ -102,12 +105,13 @@ function selectAnswer(selectAnswer) {
   } else {
     //or subtract time if wrong
     timeLeft -= 10;
+    //do not subtract time if at zero
     if(timeLeft < 0) {
       timeLeft = 0;
     }
     timerElement.textContent = timeLeft;
   }
-
+//next question
   currentQuestion++;
 // shows next questions or ends the game
   if (currentQuestion < questions.length) {
@@ -120,7 +124,7 @@ function selectAnswer(selectAnswer) {
 function endGame() {
   questionElement.classList.add("hide");
   answerButtonsElement.classList.add("hide");
-  nameEntry.classList.remove("hide");
+  nameElement.classList.remove("hide");
   scoreElement.classList.remove("hide");
   saveButton.classList.remove("hide");
  
@@ -137,6 +141,27 @@ function endGame() {
   highScores.forEach(function(score) {
     var li = document.createElement("li");
     li.textContent = score.initials + " - " + score.score;
+    highScoresList.appendChild(li);
+  });
+}
+
+//saving high scores
+function saveScore() {
+  var nameEntry = nameElement.value;
+  var highScore = { nameEntry: nameEntry, score: score};
+  highScores.push(highScore);
+
+//store highscores
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+
+  nameElement.classList.add("hide");
+  scoreElement.classList.add("hide");
+  saveButton.classList.add("hide");
+
+  highScoresList.innerHTML = "";
+  highScores.forEach(function(score) {
+   var li = document.createElement("li");
+   li.textContent = score.initials + " - " + score.score;
     highScoresList.appendChild(li);
   });
 }
