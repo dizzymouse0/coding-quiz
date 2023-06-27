@@ -1,14 +1,15 @@
 // variables for html 
-let startButton = document.getElementById("start-button");
-let questionElement = document.getElementById("question");
-let timerElement = document.getElementById("timer")
-let answerButtonsElement = document.getElementById("answer-buttons");
-let scoreElement = document.getElementById("score")
-let saveButton = document.getElementById("save-button");
-let highScores = document.getElementById("high-scores")
+var startButton = document.getElementById("start-button");
+var questionElement = document.getElementById("question");
+var timerElement = document.getElementById("timer")
+var answerButtonsElement = document.getElementById("answer-buttons");
+var scoreElement = document.getElementById("score")
+var saveButton = document.getElementById("save-button");
+var highScoresList = document.getElementById("high-scores")
+var nameEntry = document.getElementById("name-entry");
 
 // game questions
-let questions = [
+var questions = [
   {
     question: "Are Java and Javascript the same thing?",
     answers: [
@@ -40,10 +41,10 @@ let questions = [
 ]
 
 // variables for the function
-let currentQuestion;
-let score;
-let timeLeft;
-let timerInterval;
+var currentQuestion;
+var score;
+var timeLeft;
+var timerInterval;
 
 startButton.addEventListener("click", startGame);
 
@@ -71,7 +72,7 @@ function startGame() {
 }
 // displaying next questions
 function displayQuestion() {
-  let question = questions[currentQuestion];
+  var question = questions[currentQuestion];
   questionElement.textContent = question.question;
 
   while (answerButtonsElement.firstChild) {
@@ -80,7 +81,7 @@ function displayQuestion() {
 
 //show answer buttons
   question.answers.forEach(function(answer) {
-    let button = document.createElement("button");
+    var button = document.createElement("button");
     button.textContent = answer.text;
     button.classList.add("btn");
     if(answer.correct) {
@@ -93,8 +94,8 @@ function displayQuestion() {
 
 // adding correct or wrong functions
 function selectAnswer(selectAnswer) {
-  let selectedButton = selectAnswer.target;
-  let correct = selectedButton.dataset.correct;
+  var selectedButton = selectAnswer.target;
+  var correct = selectedButton.dataset.correct;
   if (correct) {
     //add 1 to score if correct
     score++;
@@ -115,11 +116,27 @@ function selectAnswer(selectAnswer) {
     endGame();
   }
 }
-//hide questions
+//hide questions and show name and score
 function endGame() {
   questionElement.classList.add("hide");
   answerButtonsElement.classList.add("hide");
+  nameEntry.classList.remove("hide");
+  scoreElement.classList.remove("hide");
+  saveButton.classList.remove("hide");
+ 
 //showing user score
   scoreElement.textContent = "Score: " + score;
 
+  var savedScores = localStorage.getItem("highScores");
+  if (savedScores) {
+    highScores = JSON.parse(savedScores);
+  }
+
+  //show high scores
+  highScoresList.innerHTML = "";
+  highScores.forEach(function(score) {
+    var li = document.createElement("li");
+    li.textContent = score.initials + " - " + score.score;
+    highScoresList.appendChild(li);
+  });
 }

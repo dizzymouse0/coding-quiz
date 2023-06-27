@@ -33,3 +33,7 @@ aside {
     padding: 10px 25px;
     color: rgb(8, 6, 6);
 }
+
+.hide {
+    display: none;
+}
