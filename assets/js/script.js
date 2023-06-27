@@ -127,6 +127,7 @@ function endGame() {
   nameElement.classList.remove("hide");
   scoreElement.classList.remove("hide");
   saveButton.classList.remove("hide");
+  startButton.classList.remove("hide");
  
 //showing user score
   scoreElement.textContent = "Score: " + score;
@@ -140,14 +141,14 @@ function endGame() {
   highScoresList.innerHTML = "";
   highScores.forEach(function(score) {
     var li = document.createElement("li");
-    li.textContent = score.initials + " - " + score.score;
+    li.textContent = score.nameEntry + " - " + score.score;
     highScoresList.appendChild(li);
   });
 }
 
 //saving high scores
 function saveScore() {
-  var nameEntry = nameElement.value;
+  var nameEntry = nameElement.textContent;
   var highScore = { nameEntry: nameEntry, score: score};
   highScores.push(highScore);
 
@@ -158,10 +159,11 @@ function saveScore() {
   scoreElement.classList.add("hide");
   saveButton.classList.add("hide");
 
+  //showing high scores
   highScoresList.innerHTML = "";
   highScores.forEach(function(score) {
    var li = document.createElement("li");
-   li.textContent = score.initials + " - " + score.score;
+   li.textContent = score.nameEntry + " - " + score.score;
     highScoresList.appendChild(li);
   });
 }
