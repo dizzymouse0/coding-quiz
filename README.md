@@ -3,10 +3,10 @@
 https://dizzymouse0.github.io/coding-quiz/
 
 ## Project description: 
-A timed Javascript quiz that locally stores scores and name
+A timed JavaScript quiz that locally stores scores and name
 
 ### Why?
-    This quiz was made to provide practice to the burgeoning Javascript coder to help improve their knowledge and track their progress.
+    This quiz was made to provide practice to the burgeoning JavaScript coder to help improve their knowledge and track their progress.
 
 ![Coding Quiz Site](assets/images/coding-quiz-homepage.png)
 
