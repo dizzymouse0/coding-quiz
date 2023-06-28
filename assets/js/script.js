@@ -12,7 +12,7 @@ var nameEntryInput = document.getElementById("nameEntryInput");
 // game questions
 var questions = [
   {
-    question: "Are Java and Javascript the same thing?",
+    question: "Are Java and JavaScript the same thing?",
     answers: [
       { text: "Yes", correct: false },
       { text: "No", correct: true },
@@ -35,10 +35,38 @@ var questions = [
       { text: "while", correct: true},
       { text: "function", correct: false},
     ]
-  }
-  //{
-   // question: "b! = c"
-  //}
+  },
+  {
+    question: "Comparison and Logical operators test for 'true' and 'false.'",
+    answers: [
+      { text: "Yes", correct: true},
+      { text: "No", correct: false},
+    ]
+  },
+  {
+    question: "Inside which HTML element do we put JavaScript?",
+    answers: [
+      { text: "<scr>", correct: false},
+      { text: "<js>", correct: false},
+      { text: "<scriptacular>", correct: false},
+      { text: "<script>", correct: true},
+    ]
+  },
+  {
+    question: "Where is the correct place to insert JavaScript?",
+    answers: [
+      { text: "The <body>", correct: false},
+      { text: "The <head>", correct: false},
+      {text: "Both the <body> and <head>", correct: true},
+    ]
+  },
+  {
+    question: "An external JavaScript file must contatin the <script> tag.",
+    answers: [
+      { text: "Yes", correct: false},
+      { text: "No", correct: true},
+    ]
+  },
 ]
 
 // variables for the function
@@ -54,7 +82,7 @@ saveButton.addEventListener("click", saveScore);
 
 function startGame() {
   currentQuestion = 0;
-  timeLeft = 30;
+  timeLeft = 60;
   score = 0;
   timerElement.textContent = timeLeft;
   // hiding start button
@@ -133,8 +161,6 @@ function endGame() {
   saveButton.classList.remove("hide");
   startButton.classList.remove("hide");
   nameEntryInput.classList.remove("hide");
-  
-  
  
 //showing user score
   scoreElement.textContent = "Score: " + score;
@@ -159,16 +185,18 @@ function saveScore() {
   var highScore = { nameEntry: nameEntry, score: score};
   highScores.push(highScore);
 
+  //sorts scores in decending order
+  highScores.sort(function(a, b) {
+    return b.score - a.score;
+  });
+
 //store highscores
   localStorage.setItem("highScores", JSON.stringify(highScores));
 
-  
   nameElement.classList.add("hide");
   scoreElement.classList.add("hide");
   saveButton.classList.add("hide");
   highScoresList.classList.remove("hide");
-  
-  
 
   //showing high scores
   highScoresList.innerHTML = "";

@@ -26,6 +26,17 @@ aside {
     margin-bottom: 100px;
 }
 
+#save-button {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* added button styling and cursor text hovor */
+#nameEntryInput {
+    cursor:text;
+    font-size: 24px;
+}
+
 .btn {
     cursor: pointer;
     font-size: 24px;
@@ -34,6 +45,7 @@ aside {
     color: rgb(8, 6, 6);
 }
 
+/* hide certain elements with 'hide' tag */
 .hide {
     display: none;
 }
