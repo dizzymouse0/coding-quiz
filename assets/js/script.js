@@ -7,6 +7,7 @@ var scoreElement = document.getElementById("score")
 var saveButton = document.getElementById("save-button");
 var highScoresList = document.getElementById("high-scores")
 var nameElement = document.getElementById("name-entry");
+var nameEntryInput = document.getElementById("nameEntryInput");
 
 // game questions
 var questions = [
@@ -60,6 +61,10 @@ function startGame() {
   startButton.classList.add("hide");
   questionElement.classList.remove("hide");
   answerButtonsElement.classList.remove("hide");
+  nameEntryInput.classList.add("hide");
+  highScoresList.classList.add("hide");
+  
+  
 
   timerInterval = setInterval(function() {
     timeLeft--;
@@ -125,9 +130,11 @@ function endGame() {
   questionElement.classList.add("hide");
   answerButtonsElement.classList.add("hide");
   nameElement.classList.remove("hide");
-  scoreElement.classList.remove("hide");
   saveButton.classList.remove("hide");
   startButton.classList.remove("hide");
+  nameEntryInput.classList.remove("hide");
+  
+  
  
 //showing user score
   scoreElement.textContent = "Score: " + score;
@@ -148,16 +155,20 @@ function endGame() {
 
 //saving high scores
 function saveScore() {
-  var nameEntry = nameElement.textContent;
+  var nameEntry = nameEntryInput.value;
   var highScore = { nameEntry: nameEntry, score: score};
   highScores.push(highScore);
 
 //store highscores
   localStorage.setItem("highScores", JSON.stringify(highScores));
 
+  
   nameElement.classList.add("hide");
   scoreElement.classList.add("hide");
   saveButton.classList.add("hide");
+  highScoresList.classList.remove("hide");
+  
+  
 
   //showing high scores
   highScoresList.innerHTML = "";
