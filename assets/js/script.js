@@ -91,6 +91,7 @@ function startGame() {
   answerButtonsElement.classList.remove("hide");
   nameEntryInput.classList.add("hide");
   highScoresList.classList.add("hide");
+  timerElement.classList.remove("hide");
   
   
 
@@ -161,6 +162,7 @@ function endGame() {
   saveButton.classList.remove("hide");
   startButton.classList.remove("hide");
   nameEntryInput.classList.remove("hide");
+  timerElement.classList.add("hide");
  
 //showing user score
   scoreElement.textContent = "Score: " + score;
